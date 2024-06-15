@@ -1,0 +1,10 @@
+streamlit
+streamlit_option_menu
+requests
+bs4
+pandas
+urllib.parse
+textblob
+time
+matplotlib
+wordcloud
