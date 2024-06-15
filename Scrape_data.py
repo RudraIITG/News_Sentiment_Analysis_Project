@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import time
 import Config_topic
-from urllib.parse import urljoin
 # st.title("Webscraping App")
 
 def scrape(topic):
@@ -19,7 +18,7 @@ def scrape(topic):
     newsheadLine=newz.find("a", class_="JtKRv").text
     time=newz.find("time", class_="hvbAAd").text
     link_to_article=newz.a['href']
-    real_link=urljoin(base_url,link_to_article)
+    real_link= base_url+link_to_article
 
     newz_collab.append([newspaperName,newsheadLine,time,real_link])
   return newz_collab
