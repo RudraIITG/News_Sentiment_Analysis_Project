@@ -106,7 +106,7 @@ def app():
                 most_used_word(df)
             elif option == "News Coverage By NewsPapers":
                 news_Coverages(df)
-            elif option == "Num of sentiments":
+            elif option == "Sentiment Stats":
                 Num_of_sentiments(df)
         else:
             st.error("Please select a valid option")
