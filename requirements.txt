@@ -2,6 +2,7 @@ streamlit
 streamlit_option_menu
 requests
 bs4
+lxml
 pandas
 textblob
 matplotlib
