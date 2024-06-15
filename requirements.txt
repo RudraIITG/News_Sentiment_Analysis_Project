@@ -1,0 +1,13 @@
+streamlit
+streamlit_option_menu
+Scrape_data
+Sentiment_Analysis
+Data_Visualization
+requests
+bs4
+pandas
+urllib.parse
+textblob
+time
+matplotlib.pyplot
+wordcloud
