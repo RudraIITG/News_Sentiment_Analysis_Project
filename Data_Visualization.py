@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import Config_topic
 import requests
-from urllib.parse import urljoin
 from textblob import TextBlob  # or import NLTK for sentiment analysis
 from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
@@ -72,7 +71,7 @@ def scrape_news(topic):
         newsheadLine = newz.find("a", class_="JtKRv").text
         time = newz.find("time", class_="hvbAAd").text
         link_to_article = newz.a['href']
-        real_link = urljoin(base_url, link_to_article)
+        real_link = base_url+link_to_article
 
         sentiment = get_sentiment(newsheadLine)
 
