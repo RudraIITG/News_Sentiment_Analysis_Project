@@ -36,4 +36,30 @@ def scrape_news(topic):
         newz_collab.append([newspaperName, newsheadLine, time, real_link, sentiment])
 
     return newz_collab
+def main():
+    st.title("Analyzing the Sentiment of the Scrapped Data")
+
+    # query = st.text_input("Enter the topic to search for news:")
+    query = Config_topic.topic
+    st.write("Please click on the below button for sentiment analysis")
+    if st.button('Analyze Sentiment'):
+        if query:
+            news_data = scrape_news(query)  # Call the scrape_news function with user input
+
+            if news_data:
+                df = pd.DataFrame(news_data,
+                                  columns=["Newspaper Name", "News Headline", "Time", "Real Link", "Sentiment"])
+                st.success('Analyzed successfully! Displaying results:')
+                st.dataframe(df)
+
+                st.download_button(label="Download CSV", data=df.to_csv(index=False), file_name='../news_data.csv',
+                                   mime='text/csv')
+            else:
+                st.warning('No news found for the given topic.')
+        else:
+            st.error('Please enter a topic to search for news.')
+
+
+if __name__ == "__main__":
+    main()
 
