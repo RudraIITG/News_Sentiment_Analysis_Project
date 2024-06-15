@@ -4,6 +4,5 @@ requests
 bs4
 pandas
 textblob
-time
 matplotlib
 wordcloud
