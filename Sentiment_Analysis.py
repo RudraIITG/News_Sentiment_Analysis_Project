@@ -36,7 +36,7 @@ def scrape_news(topic):
 
         sentiment = get_sentiment(newsheadLine)
 
-        newz_collab.append([newspaperName, newsheadLine, time, clickable_link, sentiment])
+        newz_collab.append([newspaperName, newsheadLine, sentiment, clickable_link, time])
 
     return newz_collab
 
@@ -52,7 +52,7 @@ def main():
 
             if news_data:
                 df = pd.DataFrame(news_data,
-                                  columns=["Newspaper Name", "News Headline", "Time", "Real Link", "Sentiment"])
+                                  columns=["Newspaper Name", "News Headline", "Sentiment", "Real Link", "Time"])
 
                 st.success('Analyzed successfully! Displaying results:')
                 
