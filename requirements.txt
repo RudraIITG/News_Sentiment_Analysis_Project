@@ -7,6 +7,4 @@ pandas
 textblob
 matplotlib
 wordcloud
-scikit-learn==1.2.2
-nltk==3.9.1
-pickle
+
