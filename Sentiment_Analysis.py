@@ -22,7 +22,6 @@ def get_sentiment(text):
     
     return sentiment
     
-    '
 
 
 def scrape_news(topic):
