@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-from textblob import TextBlob  # or import NLTK for sentiment analysis
+from textblob import TextBlob  
 import time
 import Config_topic
 import pickle
@@ -15,7 +15,7 @@ with open("vectorizer.pkl", 'rb') as file:
     vectorizer = pickle.load(file)
 
 with open("sentiment_model.pkl", 'rb') as file:
-    sentiment_model = picke.load(file)
+    sentiment_model = pickle.load(file)
 
 stop_words = set(stopwords.words('english'))
 
@@ -25,7 +25,6 @@ def remove_stop_words(text):
     return ' '.join(filtered_words)
 
 lemmatizer = WordNetLemmatizer()
-stop_words = set(stopwords.words('english'))
 
 def lemmatize(text):
     # Tokenize the text
