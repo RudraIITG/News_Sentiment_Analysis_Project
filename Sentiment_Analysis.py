@@ -7,7 +7,7 @@ import time
 import Config_topic
 
 def get_sentiment(text):
-     blob = TextBlob(text)
+    blob = TextBlob(text)
     
     # Get the polarity and subjectivity
     polarity = blob.sentiment.polarity
