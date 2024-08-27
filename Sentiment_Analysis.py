@@ -29,17 +29,21 @@ def scrape_news(topic):
         newsheadLine = newz.find("a", class_="JtKRv").text
         time = newz.find("time", class_="hvbAAd").text
         link_to_article = newz.a['href']
-        real_link = base_url+ link_to_article
+        real_link = base_url + link_to_article
+
+        # Make the link clickable in HTML format
+        clickable_link = f'<a href="{real_link}" target="_blank">click here</a>'
 
         sentiment = get_sentiment(newsheadLine)
 
-        newz_collab.append([newspaperName, newsheadLine, time, real_link, sentiment])
+        newz_collab.append([newspaperName, newsheadLine, time, clickable_link, sentiment])
 
     return newz_collab
-def main():
-    st.title("Analyzing the Sentiment of the Scrapped Data")
 
-    # query = st.text_input("Enter the topic to search for news:")
+
+def main():
+    st.title("Analyzing the Sentiment of the Scraped Data")
+
     query = Config_topic.topic
     st.write("Please click on the below button for sentiment analysis")
     if st.button('Analyze Sentiment'):
@@ -49,8 +53,11 @@ def main():
             if news_data:
                 df = pd.DataFrame(news_data,
                                   columns=["Newspaper Name", "News Headline", "Time", "Real Link", "Sentiment"])
+
                 st.success('Analyzed successfully! Displaying results:')
-                st.dataframe(df)
+                
+                # Display the DataFrame with clickable links
+                st.markdown(df.to_html(escape=False), unsafe_allow_html=True)
 
                 st.download_button(label="Download CSV", data=df.to_csv(index=False), file_name='../news_data.csv',
                                    mime='text/csv')
@@ -62,4 +69,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
