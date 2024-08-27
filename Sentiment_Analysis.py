@@ -6,23 +6,44 @@ from textblob import TextBlob
 import time
 import Config_topic
 import pickle
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
 
+with open("sentiment_model.pkl", 'rb') as file:
+    model = pickle.load(file)
+
+with open("vectroizer.pkl", 'rb') as file:
+    vectorizer = pickle.load(file)
+
+lemmatizer = WordNetLemmatizer()
+stop_words = set(stopwords.words('english'))
+
+def remove_stop_words(text):
+    word_tokens = word_tokenize(text)
+    filtered_words = [word for word in word_tokens if word.lower() not in stop_words]
+    return ' '.join(filtered_words)
+
+def lemmatizor(text):
+    # Tokenize the text
+    tokens = word_tokenize(text)
+    
+    # Remove stop words
+    filtered_tokens = [word for word in tokens if word.lower() not in stop_words]
+    
+    # Lemmatize the tokens
+    lemmatized_tokens = [lemmatizer.lemmatize(word) for word in filtered_tokens]
+    
+    # Join tokens back to a single string
+    return ' '.join(lemmatized_tokens)
 
 def get_sentiment(text):
-    blob = TextBlob(text)
     
-    # Get the polarity and subjectivity
-    polarity = blob.sentiment.polarity
-    subjectivity = blob.sentiment.subjectivity
-    
-    if polarity > 0:
-        sentiment = 'Positive'
-    elif polarity == 0:
-        sentiment = 'Neutral'
-    else:
-        sentiment = 'Negative'
-    
-    return sentiment
+    stopwords_removed = remove_stop_words(text)
+    lemmatized_text = lemmatizor(stopwords_removed)
+    word_arr = vectorizer.transform([lemmatized_text])
+    return model.predict(word_arr)[0]
     
 
 
