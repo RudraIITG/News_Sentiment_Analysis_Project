@@ -7,3 +7,6 @@ pandas
 textblob
 matplotlib
 wordcloud
+pickle
+nltk
+sklearn
