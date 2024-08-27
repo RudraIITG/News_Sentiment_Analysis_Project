@@ -35,7 +35,7 @@ welcome = "Thank You for using our webapp"
 
 
 def app():
-    st.title("Scrapping the data From Multiple Websites")
+    st.title("Scrapp the data From Multiple Websites")
     Config_topic.topic = st.text_input("Enter the topic to scrape for news:")
     st.write_stream(stream_data(welcome))
 
