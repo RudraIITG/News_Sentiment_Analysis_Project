@@ -5,22 +5,26 @@ import pandas as pd
 from textblob import TextBlob  
 import time
 import Config_topic
-import pickle
-
-
-with open("sentiment_model.pkl", 'rb') as file:
-    model = pickle.load(file)
-
-with open("vectroizer.pkl", 'rb') as file:
-    vectorizer = pickle.load(file)
 
 
 
 def get_sentiment(text):
     
     
-    word_arr = vectorizer.transform([text])
-    return model.predict(word_arr)[0]
+    blob = TextBlob(text)
+    
+    # Get the polarity and subjectivity
+    polarity = blob.sentiment.polarity
+    subjectivity = blob.sentiment.subjectivity
+    
+    if polarity > 0:
+        sentiment = 'Positive'
+    elif polarity == 0:
+        sentiment = 'Neutral'
+    else:
+        sentiment = 'Negative'
+    
+    return sentiment
     
 
 
