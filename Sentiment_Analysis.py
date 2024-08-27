@@ -5,16 +5,49 @@ import pandas as pd
 from textblob import TextBlob  # or import NLTK for sentiment analysis
 import time
 import Config_topic
+import pickle
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+
+with open("vectorizer.pkl", 'rb') as file:
+    vectorizer = pickle.load(file)
+
+with open("sentiment_model.pkl", 'rb') as file:
+    sentiment_model = picke.load(file)
+
+stop_words = set(stopwords.words('english'))
+
+def remove_stop_words(text):
+    word_tokens = word_tokenize(text)
+    filtered_words = [word for word in word_tokens if word.lower() not in stop_words]
+    return ' '.join(filtered_words)
+
+lemmatizer = WordNetLemmatizer()
+stop_words = set(stopwords.words('english'))
+
+def lemmatize(text):
+    # Tokenize the text
+    tokens = word_tokenize(text)
+    
+    # Remove stop words
+    filtered_tokens = [word for word in tokens if word.lower() not in stop_words]
+    
+    # Lemmatize the tokens
+    lemmatized_tokens = [lemmatizer.lemmatize(word) for word in filtered_tokens]
+    
+    # Join tokens back to a single string
+    return ' '.join(lemmatized_tokens)
 
 def get_sentiment(text):
-    analysis = TextBlob(text)
-    polarity = analysis.sentiment.polarity
-    if polarity > 0:
-        return 'Positive'
-    elif polarity == 0:
-        return 'Neutral'
-    else:
-        return 'Negative'
+    removed_stopwords = remove_stop_words(text)
+    lemmatized_text = lemmatize(removed_stopwords)
+    sparse_arr = vectorizer.transform([lemmatized_text])
+    return sentiment_model.predict(sparse_arr)[0]
+    
+    
+    '
 
 
 def scrape_news(topic):
