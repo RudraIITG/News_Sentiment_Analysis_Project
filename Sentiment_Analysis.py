@@ -10,6 +10,7 @@ import joblib
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
+nltk.download('stopwords')
 
 stop_words = set(stopwords.words('english'))
 lemmatizer = WordNetLemmatizer()
