@@ -6,7 +6,6 @@ from textblob import TextBlob
 import time
 import Config_topic
 import nltk
-import joblib
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
