@@ -5,8 +5,35 @@ import pandas as pd
 from textblob import TextBlob  
 import time
 import Config_topic
+import nltk
+import joblib
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
 
+stop_words = set(stopwords.words('english'))
+lemmatizer = WordNetLemmatizer()
 
+def remove_stop_words(text):
+    word_tokens = word_tokenize(text)
+    filtered_words = [word for word in word_tokens if word.lower() not in stop_words]
+    return ' '.join(filtered_words)
+
+def preprocess_text(text):
+    # Tokenize the text
+    tokens = word_tokenize(text)
+    
+    # Remove stop words
+    filtered_tokens = [word for word in tokens if word.lower() not in stop_words]
+    
+    # Lemmatize the tokens
+    lemmatized_tokens = [lemmatizer.lemmatize(word) for word in filtered_tokens]
+    
+    # Join tokens back to a single string
+    return ' '.join(lemmatized_tokens)
+
+#sentiment_model = joblib.load('sentiment_model.joblib')
+#vectorizer = joblib.load('vectorizer.joblib)
 
 def get_sentiment(text):
     
