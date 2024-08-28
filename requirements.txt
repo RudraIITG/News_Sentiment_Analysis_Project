@@ -7,4 +7,4 @@ pandas
 textblob
 matplotlib
 wordcloud
-
+joblib
