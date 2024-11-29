@@ -7,7 +7,7 @@ import Scrape_data, Sentiment_Analysis, Data_Visualization
 with st.sidebar:
     selected = option_menu(
         menu_title="NewsSuggestion",
-        options=["Scrape Data", "View Articles by Sentiment", "Related Data"],
+        options=["News Articles", "Articles by Sentiment", "Related Data"],
         icons=["database", "emoji-smile","bar-chart-line-fill"],
         menu_icon="newspaper",
         default_index=0,
@@ -24,12 +24,12 @@ with st.sidebar:
         },
     )
 
-if selected == "Scrape Data":
+if selected == "News Articles":
     # st.title(f"You entered {selected}")
     Scrape_data.app()
-if selected == "Analyze Sentiment":
+if selected == "Articles by Sentiment":
     # st.title(f"You entered {selected}")
     Sentiment_Analysis.main()
-if selected == "Data Visualization":
+if selected == "Related Data":
     # st.title(f"You entered {selected}")
     Data_Visualization.app()
