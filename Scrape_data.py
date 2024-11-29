@@ -32,13 +32,13 @@ def stream_data(welcome):
         time.sleep(0.1)
 
 
-welcome = "Thank You for using our webapp"
+#welcome = "Thank You for using our webapp"
 
 
 def app():
     st.title("News Sentiment Analyzer")
-    Config_topic.topic = st.text_input("Enter the topic to scrape for news:")
-    st.write_stream(stream_data(welcome))
+    Config_topic.topic = st.text_input("Enter the topic to read articles:")
+    #st.write_stream(stream_data(welcome))
 
     if st.button('Search'):
         if Config_topic.topic:
@@ -48,7 +48,7 @@ def app():
                 csv_file = '../news_data.csv'
                 df.to_csv(csv_file, index=True)
 
-                st.success('Scraping successful! Data saved to news_data.csv.')
+                st.success('This are the available news articles')
 
                 # Display the DataFrame with clickable links
                 st.markdown(df.to_html(escape=False), unsafe_allow_html=True)
