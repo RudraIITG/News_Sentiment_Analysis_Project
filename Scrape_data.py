@@ -1,3 +1,27 @@
+import streamlit as st
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+import time
+import Config_topic
+
+def scrape(topic):
+    newz_collab = []
+    base_url = 'https://news.google.com/'
+    response_ = requests.get(f"https://news.google.com/search?q={topic}&hl=en-IN&gl=IN&ceid=IN%3Aen")
+    response = response_.content
+    soup = BeautifulSoup(response, "lxml")
+    news = soup.find_all("article", class_="IFHyqb DeXSAc")
+    for newz in news:
+        newspaperName = newz.find("div", class_="vr1PYe").text
+        newsheadLine = newz.find("a", class_="JtKRv").text
+        time = newz.find("time", class_="hvbAAd").text
+        link_to_article = newz.a['href']
+        real_link = base_url + link_to_article
+
+        # Make the link clickable in HTML format
+        clickable_link = f'<a href="{real_link}" target="_blank">click here</a>'
+
         newz_collab.append([newspaperName, newsheadLine, time, clickable_link])
     return newz_collab
 
