@@ -8,3 +8,5 @@ textblob
 matplotlib
 wordcloud
 gensim
+torch==1.13.1
+transformers==4.27.0
