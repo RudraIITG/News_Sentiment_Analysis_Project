@@ -26,7 +26,7 @@ with st.sidebar:
 
 if selected == "News Articles":
     # st.title(f"You entered {selected}")
-    Scrape_data.app()
+    Scrape_data.main()
 if selected == "Articles by Sentiment":
     # st.title(f"You entered {selected}")
     Sentiment_Analysis.main()
