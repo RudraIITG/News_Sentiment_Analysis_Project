@@ -7,7 +7,7 @@ import Scrape_data, Sentiment_Analysis, Data_Visualization
 with st.sidebar:
     selected = option_menu(
         menu_title="NewsSuggestion",
-        options=["Scrape Data", "Analyze Sentiment", "Data Visualization"],
+        options=["News Articles", "View Articles by Sentiment", "Related Data"],
         icons=["database", "emoji-smile","bar-chart-line-fill"],
         menu_icon="newspaper",
         default_index=0,
