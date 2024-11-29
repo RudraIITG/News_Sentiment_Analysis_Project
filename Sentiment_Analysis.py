@@ -5,6 +5,7 @@ import pandas as pd
 from textblob import TextBlob  
 import time
 import Config_topic
+import gensim
 
 
 def get_sentiment(text):
