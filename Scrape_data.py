@@ -26,7 +26,7 @@ def scrape(topic):
     return newz_collab
 
 
-def stream_data(welcome):
+#def stream_data(welcome):
     for word in welcome.split(" "):
         yield word + "  "  # yield creates a generator function
         time.sleep(0.1)
