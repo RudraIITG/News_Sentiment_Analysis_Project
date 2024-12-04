@@ -49,7 +49,7 @@ def app():
                 csv_file = '../news_data.csv'
                 df.to_csv(csv_file, index=True)
 
-                st.success('Scraping successful! Data saved to news_data.csv.')
+                st.success('News Articles succedfully queried!')
 
                 # Display the DataFrame with clickable links
                 st.markdown(df.to_html(escape=False), unsafe_allow_html=True)
