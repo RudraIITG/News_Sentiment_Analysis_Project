@@ -26,7 +26,7 @@ def scrape(topic):
     return newz_collab
 
 
-#def stream_data(welcome):
+def stream_data(welcome):
     for word in welcome.split(" "):
         yield word + "  "  # yield creates a generator function
         time.sleep(0.1)
@@ -39,7 +39,7 @@ def app():
     #st.title("Scraping Data From Multiple Websites")
     st.title("News Sentiment Analyzer")
     Config_topic.topic = st.text_input("Enter the topic to view articles:")
-    st.write_stream(stream_data(welcome))
+    #st.write_stream(stream_data(welcome))
 
     if st.button('Search'):
         if Config_topic.topic:
